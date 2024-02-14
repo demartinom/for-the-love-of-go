@@ -50,7 +50,6 @@ func TestMultiply(t *testing.T) {
 			t.Errorf("Multiply (%f,%f): want %f, got %f", tc.a, tc.b, tc.want, got)
 		}
 	}
-
 }
 
 func TestDivide(t *testing.T) {
@@ -76,5 +75,21 @@ func TestDivideInvalid(t *testing.T) {
 	_, err := calculator.Divide(1, 0)
 	if err == nil {
 		t.Error("want error for invalid input, got nil")
+	}
+}
+
+func TestSqrt(t *testing.T) {
+	testCases := []struct {
+		a    float64
+		want float64
+	}{{4, 2}, {100, 10}}
+	for _, tC := range testCases {
+		got, err := calculator.Sqrt(tC.a)
+		if err != nil {
+			t.Fatal("Wrong!")
+		}
+		if tC.want != got {
+			t.Errorf("want %f, got %f", tC.want, got)
+		}
 	}
 }

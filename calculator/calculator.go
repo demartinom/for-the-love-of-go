@@ -1,6 +1,9 @@
 package calculator
 
-import "errors"
+import (
+	"errors"
+	"math"
+)
 
 //Add takes two numbers and returns the result of adding them together
 
@@ -22,4 +25,11 @@ func Divide(a, b float64) (float64, error) {
 		return 0, errors.New("division by zero is not allowed")
 	}
 	return a / b, nil
+}
+
+func Sqrt(a float64) (float64, error) {
+	if a < 1 {
+		return 0, errors.New("negative numbers do not have square roots")
+	}
+	return math.Sqrt(a), nil
 }
