@@ -5,3 +5,8 @@ type Book struct {
 	Author string
 	Copies int
 }
+
+func Buy(book Book) Book {
+	book.Copies--
+	return book
+}
