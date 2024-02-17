@@ -18,7 +18,10 @@ func TestBuy(t *testing.T) {
 	t.Parallel()
 	b := bookstore.Book{"Spark Joy", "Marie Kondo", 2}
 	want := 1
-	result := bookstore.Buy(b)
+	result, err := bookstore.Buy(b)
+	if err != nil {
+		t.Fatal(err)
+	}
 	got := result.Copies
 	if want != got {
 		t.Errorf("want %d, got %d", want, got)
