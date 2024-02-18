@@ -18,7 +18,7 @@ func TestBook(t *testing.T) {
 
 func TestBuy(t *testing.T) {
 	t.Parallel()
-	b := bookstore.Book{"Spark Joy", "Marie Kondo", 2}
+	b := bookstore.Book{1, "Spark Joy", "Marie Kondo", 2}
 	want := 1
 	result, err := bookstore.Buy(b)
 	if err != nil {
@@ -32,7 +32,7 @@ func TestBuy(t *testing.T) {
 
 func TestBuyErrors(t *testing.T) {
 	t.Parallel()
-	b := bookstore.Book{"Spark Joy", "Marie Kondo", 0}
+	b := bookstore.Book{1, "Spark Joy", "Marie Kondo", 0}
 	_, err := bookstore.Buy(b)
 	if err == nil {
 		t.Error("want error buying from zero copies, got nil")
@@ -44,6 +44,16 @@ func TestGetAllBooks(t *testing.T) {
 	catalog := []bookstore.Book{{Title: "For the Love of Go"}, {Title: "The Power of Go: Tools"}}
 	want := []bookstore.Book{{Title: "For the Love of Go"}, {Title: "The Power of Go: Tools"}}
 	got := bookstore.GetAllBooks(catalog)
+	if !cmp.Equal(want, got) {
+		t.Error(cmp.Diff(want, got))
+	}
+}
+
+func TestGetBook(t *testing.T) {
+	t.Parallel()
+	catalog := []bookstore.Book{{ID: 1, Title: "For the Love of Go"}, {ID: 2, Title: "The Power of Go: Tools"}}
+	want := bookstore.Book{ID: 2, Title: "The Power of Go: Tools"}
+	got := bookstore.GetBook(catalog, 2)
 	if !cmp.Equal(want, got) {
 		t.Error(cmp.Diff(want, got))
 	}
