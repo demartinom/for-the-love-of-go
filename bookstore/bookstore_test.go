@@ -19,7 +19,7 @@ func TestBook(t *testing.T) {
 
 func TestBuy(t *testing.T) {
 	t.Parallel()
-	b := bookstore.Book{1, "Spark Joy", "Marie Kondo", 2}
+	b := bookstore.Book{ID: 1, Title: "Spark Joy", Author: "Marie Kondo", Copies: 2}
 	want := 1
 	result, err := bookstore.Buy(b)
 	if err != nil {
@@ -33,7 +33,7 @@ func TestBuy(t *testing.T) {
 
 func TestBuyErrors(t *testing.T) {
 	t.Parallel()
-	b := bookstore.Book{1, "Spark Joy", "Marie Kondo", 0}
+	b := bookstore.Book{ID: 1, Title: "Spark Joy", Author: "Marie Kondo", Copies: 0}
 	_, err := bookstore.Buy(b)
 	if err == nil {
 		t.Error("want error buying from zero copies, got nil")
@@ -81,5 +81,15 @@ func TestGetBookBadIDReturnsError(t *testing.T) {
 	_, err := bookstore.GetBook(catalog, 999)
 	if err == nil {
 		t.Fatal("want error for non-existend ID, got nil")
+	}
+}
+func TestNetPriceCents(t *testing.T) {
+	t.Parallel()
+	book := bookstore.Book{
+		Title: "Title", PriceCents: 2000, DiscountPercent: 50}
+	want := 1000
+	got := book.NetPriceCents()
+	if want != got {
+		t.Errorf("wanted %d, got %d", want, got)
 	}
 }
