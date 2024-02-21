@@ -6,10 +6,12 @@ import (
 )
 
 type Book struct {
-	ID     int
-	Title  string
-	Author string
-	Copies int
+	ID              int
+	Title           string
+	Author          string
+	Copies          int
+	PriceCents      int
+	DiscountPercent int
 }
 
 func Buy(book Book) (Book, error) {
