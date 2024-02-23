@@ -27,3 +27,7 @@ func (builder MyBuilder) Hello() string {
 func (su StringUppercaser) ToUpper() string {
 	return strings.ToUpper(su.Contents.String())
 }
+
+func (i *MyInt) Double() {
+	*i *= 2
+}
