@@ -74,7 +74,7 @@ func TestStringUppercaser(t *testing.T) {
 	t.Parallel()
 	var su mytypes.StringUppercaser
 	su.Contents.WriteString("upper")
-	want := "UPPPER"
+	want := "UPPER"
 	got := su.ToUpper()
 	if want != got {
 		t.Errorf("want %q, got %q", want, got)
@@ -85,8 +85,8 @@ func Test(t *testing.T) {
 	t.Parallel()
 	x := mytypes.MyInt(12)
 	want := mytypes.MyInt(24)
-	p := &x
-	p.Double()
+	// p := &x
+	x.Double()
 	if want != x {
 		t.Errorf("want %d, got %d", want, x)
 	}
