@@ -120,22 +120,34 @@ func TestInvalidPriceCents(t *testing.T) {
 
 func TestSetCategory(t *testing.T) {
 	t.Parallel()
-	book := bookstore.Book{}
-	want := "Autobiography"
-	err := book.SetCategory("Autobiography")
-	if err != nil {
-		t.Fatal(err)
-	}
-	got := book.Category()
-	if want != got {
-		t.Errorf("want category %s, got %s", want, got)
+	book := bookstore.Book{Title: "For the Love of Go"}
+	testCases := []struct {
+		desc string
+		want bookstore.Category
+	}{
+		{
+			desc: "want 0",
+			want: bookstore.CategoryAutobiography,
+		},
+		{desc: "want 1", want: bookstore.CategoryLargePrintRomance}, {desc: "want 2", want: bookstore.CategoryParticlePhysics}}
+	for _, tC := range testCases {
+		t.Run(tC.desc, func(t *testing.T) {
+			err := book.SetCategory(2)
+			if err != nil {
+				t.Fatal(err)
+			}
+			got := book.Category()
+			if tC.want != got {
+				t.Errorf("want category %v, got %v", tC.want, got)
+			}
+		})
 	}
 }
 
 func TestInvalidSetCategory(t *testing.T) {
 	t.Parallel()
 	book := bookstore.Book{}
-	err := book.SetCategory("Fake")
+	err := book.SetCategory(999)
 	if err == nil {
 		t.Fatal("want error for invalid category, got nil")
 	}
