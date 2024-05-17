@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestSum(t *testing.T) {
 	t.Run("collection of 5 numbers", func(t *testing.T) {
@@ -23,4 +26,10 @@ func TestSum(t *testing.T) {
 			t.Errorf("got %d given %v, want %d", got, numbers, want)
 		}
 	})
+}
+
+func ExampleSum() {
+	numbers := []int{10, 20, 30}
+	fmt.Println(Sum(numbers))
+	// Output: 60
 }
