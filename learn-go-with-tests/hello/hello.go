@@ -9,11 +9,11 @@ import "fmt"
 // }
 
 // Says hello
-func Hello() string {
-	return "Hello, world" // Say hello
+func Hello(name string) string {
+	return "Hello, " + name // Say hello
 }
 
 // Main function
 func main() {
-	fmt.Println(Hello()) // A thing
+	fmt.Println(Hello("world")) // A thing
 }
