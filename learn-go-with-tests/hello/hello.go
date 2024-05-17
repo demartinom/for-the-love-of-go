@@ -8,9 +8,11 @@ import "fmt"
 // 	fmt.Println("Hello, world")
 // }
 
+const englishHelloPrefix = "Hello, "
+
 // Says hello
 func Hello(name string) string {
-	return "Hello, " + name // Say hello
+	return englishHelloPrefix + name // Say hello
 }
 
 // Main function
