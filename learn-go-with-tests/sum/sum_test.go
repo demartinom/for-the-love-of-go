@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"slices"
 	"testing"
 )
 
@@ -32,4 +33,12 @@ func ExampleSum() {
 	numbers := []int{10, 20, 30}
 	fmt.Println(Sum(numbers))
 	// Output: 60
+}
+
+func TestSumAll(t *testing.T) {
+	got := SumAll([]int{1, 2}, []int{0, 9})
+	want := []int{3, 9}
+	if !slices.Equal(got, want) {
+		t.Errorf("got %v, want %v", got, want)
+	}
 }
