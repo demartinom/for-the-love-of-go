@@ -1,11 +1,7 @@
 // Package for doing stuff
 package hello
 
-// Running Println in main rather than in a separate function
-// func main() {
-// 	fmt.Println("Hello, world")
-// }
-
+// List of languages and their greetings
 const (
 	spanish = "Spanish"
 	french  = "French"
@@ -17,13 +13,14 @@ const (
 
 // Says hello
 func Hello(name string, language string) string {
-	if name == "" {
+	if name == "" { //In case no name is provded
 		name = "World"
 	}
 
 	return greetingPrefix(language) + name
 }
 
+// Helper function to decide greeting language
 func greetingPrefix(language string) (prefix string) {
 	switch language {
 	case spanish:
