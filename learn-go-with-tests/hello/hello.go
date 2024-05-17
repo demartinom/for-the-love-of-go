@@ -1,7 +1,5 @@
 // Package for doing stuff
-package main
-
-import "fmt"
+package hello
 
 // Running Println in main rather than in a separate function
 // func main() {
@@ -36,9 +34,4 @@ func greetingPrefix(language string) (prefix string) {
 		prefix = englishHelloPrefix
 	}
 	return
-}
-
-// Main function
-func main() {
-	fmt.Println(Hello("world", "")) // A thing
 }
