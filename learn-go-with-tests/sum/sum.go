@@ -1,18 +1,19 @@
 package main
 
-func Sum(numbers []int) int {
+func Sum(nums []int) int {
 	sum := 0
-	for _, number := range numbers {
+	for _, number := range nums {
 		sum += number
 	}
 	return sum
 }
 
-func SumAll(nums ...[]int) []int {
-	lengthOfNumbers := len(nums)
-	sums := make([]int, lengthOfNumbers)
-	for i, numbers := range nums {
-		sums[i] = Sum(numbers)
+func SumAll(numsToSum ...[]int) []int {
+	var sums []int
+
+	for _, nums := range numsToSum {
+		sums = append(sums, Sum(nums))
 	}
+
 	return sums
 }
