@@ -19,6 +19,11 @@ func (c Circle) Area() float64 {
 	return math.Pi * c.Radius * c.Radius
 }
 
+// * Rectangle and Circle work because they both have the Area method
+type Shape interface {
+	Area() float64
+}
+
 func Perimeter(rectangle Rectangle) float64 {
 	return (rectangle.Width + rectangle.Height) * 2
 }
