@@ -20,7 +20,7 @@ type application struct {
 func main() {
 	//CLI flag for setting the port
 	addr := flag.String("addr", ":4000", "HTTP network address")
-	dsn := flag.String("dsn", "web:pass@/snippetbox?parseTime-true", "MySQL data source name")
+	dsn := flag.String("dsn", "web:pass@/snippetbox?parseTime=true", "MySQL data source name")
 
 	//Parse the flag
 	flag.Parse()
