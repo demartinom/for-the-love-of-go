@@ -36,10 +36,15 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	ts, err := template.ParseFiles(files...)
 	if err != nil {
 		app.serverError(w, err)
+		return
+	}
+
+	data := &templateData{
+		Snippets: snippets,
 	}
 
 	//Writes the base template to the response body
-	err = ts.ExecuteTemplate(w, "base", nil)
+	err = ts.ExecuteTemplate(w, "base", data)
 	if err != nil {
 		app.serverError(w, err)
 	}
