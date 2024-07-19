@@ -1,12 +1,10 @@
 package main
 
 import (
-	"bufio"
 	"encoding/csv"
 	"fmt"
 	"log"
 	"os"
-	"strings"
 )
 
 func main() {
@@ -33,16 +31,35 @@ func main() {
 	// Track user score
 	score := 0
 
-	// Ask user the questions. If they are correct, their score goes up
-	for qNum, question := range questions {
-		//Ask question
-		fmt.Printf("Question %d: what is %s? ", qNum+1, question[0])
-		//Wait for user input
-		reader := bufio.NewReader(os.Stdin)
-		input, _ := reader.ReadString('\n')
+	//* Version 1
+	// // Ask user the questions. If they are correct, their score goes up
+	// for qNum, question := range questions {
+	// 	//Ask question
+	// 	fmt.Printf("Question %d: what is %s? ", qNum+1, question[0])
+	// 	//Wait for user input
+	// 	reader := bufio.NewReader(os.Stdin)
+	// 	input, _ := reader.ReadString('\n')
 
-		//Compare user input to answer
-		if strings.TrimSpace(input) == question[1] {
+	// 	//Compare user input to answer
+	// 	if strings.TrimSpace(input) == question[1] {
+	// 		fmt.Println("Correct!")
+	// 		score++
+	// 	} else {
+	// 		fmt.Println("Incorrect!")
+	// 		break
+	// 	}
+	// }
+
+	// Create slice of problem structs
+	questionList := parseProblems(questions)
+
+	for i, question := range questionList {
+		fmt.Printf("Question #%d, what is %s? ", i+1, question.q)
+
+		var answer string
+		fmt.Scanf("%s", &answer)
+
+		if answer == question.a {
 			fmt.Println("Correct!")
 			score++
 		} else {
@@ -50,5 +67,20 @@ func main() {
 			break
 		}
 	}
+
 	fmt.Printf("Your score is %d\n", score)
+}
+
+// Struct to hold problem question and answer
+type problem struct {
+	q string
+	a string
+}
+
+func parseProblems(problems [][]string) []problem {
+	problemSlice := make([]problem, len(problems))
+	for i, line := range problems {
+		problemSlice[i] = problem{q: line[0], a: line[1]}
+	}
+	return problemSlice
 }
