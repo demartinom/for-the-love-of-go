@@ -53,6 +53,10 @@ func main() {
 	// Create slice of problem structs
 	questionList := parseProblems(questions)
 
+	// Don't start timer until user is ready
+	fmt.Printf("When ready, press enter ")
+	fmt.Scanf("%s")
+
 	for i, question := range questionList {
 		fmt.Printf("Question #%d, what is %s? ", i+1, question.q)
 
