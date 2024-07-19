@@ -1,10 +1,12 @@
 package main
 
 import (
+	"bufio"
 	"encoding/csv"
 	"fmt"
 	"log"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -28,7 +30,25 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	// Track user score
+	score := 0
 
-	//Placeholder
-	fmt.Println(questions)
+	// Ask user the questions. If they are correct, their score goes up
+	for qNum, question := range questions {
+		//Ask question
+		fmt.Printf("Question %d: what is %s? ", qNum+1, question[0])
+		//Wait for user input
+		reader := bufio.NewReader(os.Stdin)
+		input, _ := reader.ReadString('\n')
+
+		//Compare user input to answer
+		if strings.TrimSpace(input) == question[1] {
+			fmt.Println("Correct!")
+			score++
+		} else {
+			fmt.Println("Incorrect!")
+			break
+		}
+	}
+	fmt.Printf("Your score is %d\n", score)
 }
