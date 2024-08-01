@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 )
 
 func main() {
@@ -56,6 +57,8 @@ func main() {
 	// Don't start timer until user is ready
 	fmt.Printf("When ready, press enter ")
 	fmt.Scanf("%s")
+
+	timer := time.NewTimer(30 * time.Second)
 
 	for i, question := range questionList {
 		fmt.Printf("Question #%d, what is %s? ", i+1, question.q)
