@@ -1,10 +1,10 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
-	"encoding/json"
 )
 
 type Arc struct {
@@ -29,11 +29,15 @@ type Option struct {
 }
 
 func home(w http.ResponseWriter, r *http.Request) {
+	var arc Arc
+	storyArc := readJson("gopher.json")
+	err := json.Unmarshal(storyArc, &arc)
+	if err != nil {
+		fmt.Println("error", err)
+		return
+	}
+	fmt.Println(arc.Intro)
 	files := []string{"./web/html/base.tmpl.html"}
-
-	var story Story
-	err := json.Unmarshal([]byte(),%story)
-
 	handleTemplates(w, files)
 }
 
