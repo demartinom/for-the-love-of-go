@@ -6,13 +6,14 @@ import (
 	"net/http"
 )
 
-func hello(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "hello!")
+func home(w http.ResponseWriter, r *http.Request) {
+	files := []string{"./web/html/base.tmpl.html"}
+	handleTemplates(w, files)
 }
 
 func main() {
-	http.HandleFunc("/", hello)
-	fmt.Printf("Starting server at port %s", "8080")
+	http.HandleFunc("/", home)
+	fmt.Printf("Starting server at port %s\n", "8080")
 
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
