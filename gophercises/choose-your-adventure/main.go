@@ -35,26 +35,15 @@ func unmarshall() Story {
 	err := json.Unmarshal(story, &storyText)
 	if err != nil {
 		fmt.Println("error", err)
-
 	}
 	return storyText
-}
-
-func home(w http.ResponseWriter, r *http.Request) {
-
-	files := []string{"./web/html/base.tmpl.html", "./web/html/home.tmpl.html"}
-	handleTemplates(w, files, storyText.Intro)
-}
-
-func newYork(w http.ResponseWriter, r *http.Request) {
-	files := []string{"./web/html/base.tmpl.html", "./web/html/newyork.tmpl.html"}
-	handleTemplates(w, files, storyText.NewYork)
 }
 
 func main() {
 	unmarshall()
 	http.HandleFunc("/", home)
 	http.HandleFunc("/new-york", newYork)
+	http.HandleFunc("/denver", denver)
 	fmt.Printf("Starting server at port %s\n", "8080")
 
 	err := http.ListenAndServe(":8080", nil)
