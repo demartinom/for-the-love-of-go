@@ -9,14 +9,14 @@ import (
 	"os"
 )
 
-func handleTemplates(w http.ResponseWriter, templates []string) {
+func handleTemplates(w http.ResponseWriter, templates []string, json StoryArc) {
 	ts, err := template.ParseFiles(templates...)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	err = ts.ExecuteTemplate(w, "base", nil)
+	err = ts.ExecuteTemplate(w, "base", json)
 	if err != nil {
 		fmt.Println(err)
 	}
