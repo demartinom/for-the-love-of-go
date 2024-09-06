@@ -36,9 +36,8 @@ func home(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("error", err)
 		return
 	}
-	fmt.Println(arc.Intro)
-	files := []string{"./web/html/base.tmpl.html"}
-	handleTemplates(w, files)
+	files := []string{"./web/html/base.tmpl.html", "./web/html/home.tmpl.html"}
+	handleTemplates(w, files, storyArc.Intro)
 }
 
 func main() {
