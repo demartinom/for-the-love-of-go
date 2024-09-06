@@ -8,16 +8,16 @@ import (
 )
 
 type Arc struct {
-	Intro     Title `json:"intro"`
-	NewYork   Title `json:"new-york"`
-	Debate    Title `json:"debate"`
-	SeanKelly Title `json:"sean-kelly"`
-	MarkBates Title `json:"mark-bates"`
-	Denver    Title `json:"denver"`
-	Home      Title `json:"home"`
+	Intro     StoryArc `json:"intro"`
+	NewYork   StoryArc `json:"new-york"`
+	Debate    StoryArc `json:"debate"`
+	SeanKelly StoryArc `json:"sean-kelly"`
+	MarkBates StoryArc `json:"mark-bates"`
+	Denver    StoryArc `json:"denver"`
+	Home      StoryArc `json:"home"`
 }
 
-type Title struct {
+type StoryArc struct {
 	Title   string   `json:"title"`
 	Story   []string `json:"story"`
 	Options []Option `json:"options"`
@@ -29,9 +29,9 @@ type Option struct {
 }
 
 func home(w http.ResponseWriter, r *http.Request) {
-	var arc Arc
-	storyArc := readJson("gopher.json")
-	err := json.Unmarshal(storyArc, &arc)
+	var storyArc Arc
+	story := readJson("gopher.json")
+	err := json.Unmarshal(story, &storyArc)
 	if err != nil {
 		fmt.Println("error", err)
 		return
