@@ -1,7 +1,7 @@
 {{define "main"}}
-<h1>Choose Your Own Adventure</h1>
 <h1>{{.Title}}</h1>
-<p>{{index .Story 0}}</p>
-<p>{{index .Story 1}}</p>
-<p>{{index .Story 2}}</p>
-{{end}}
+{{range .Story}}
+<p>{{.}}</p>
+{{end}} {{range .Options}}
+<a href="/{{.Arc}}">{{.Text}}</a>
+{{end}} {{end}}
