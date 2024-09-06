@@ -29,21 +29,32 @@ type Option struct {
 }
 
 var storyText Story
-var story = readJson("gopher.json")
-var err = json.Unmarshal(story, &storyText)
+
+func unmarshall() Story {
+	story := readJson("gopher.json")
+	err := json.Unmarshal(story, &storyText)
+	if err != nil {
+		fmt.Println("error", err)
+
+	}
+	return storyText
+}
 
 func home(w http.ResponseWriter, r *http.Request) {
 
-	if err != nil {
-		fmt.Println("error", err)
-		return
-	}
 	files := []string{"./web/html/base.tmpl.html", "./web/html/home.tmpl.html"}
 	handleTemplates(w, files, storyText.Intro)
 }
 
+func newYork(w http.ResponseWriter, r *http.Request) {
+	files := []string{"./web/html/base.tmpl.html", "./web/html/newyork.tmpl.html"}
+	handleTemplates(w, files, storyText.NewYork)
+}
+
 func main() {
+	unmarshall()
 	http.HandleFunc("/", home)
+	http.HandleFunc("/new-york", newYork)
 	fmt.Printf("Starting server at port %s\n", "8080")
 
 	err := http.ListenAndServe(":8080", nil)
