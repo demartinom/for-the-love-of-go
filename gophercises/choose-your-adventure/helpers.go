@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"html/template"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -23,13 +23,13 @@ func handleTemplates(w http.ResponseWriter, templates []string) {
 }
 
 func readJson(file string) []byte {
-	jsonFile, err := os.Open("gopher.json")
+	jsonFile, err := os.Open(file)
 	if err != nil {
 		log.Fatalf("failed to open file: %s", err)
 	}
 	defer jsonFile.Close()
 
-	byteValue, err := ioutil.ReadAll(jsonFile)
+	byteValue, err := io.ReadAll(jsonFile)
 	if err != nil {
 		log.Fatalf("failed to read file: %s", err)
 	}
