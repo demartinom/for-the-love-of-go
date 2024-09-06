@@ -41,9 +41,13 @@ func unmarshall() Story {
 
 func main() {
 	unmarshall()
-	http.HandleFunc("/", home)
+	http.HandleFunc("/", intro)
 	http.HandleFunc("/new-york", newYork)
+	http.HandleFunc("/debate", debate)
+	http.HandleFunc("/sean-kelly", seanKelly)
+	http.HandleFunc("/mark-bates", markBates)
 	http.HandleFunc("/denver", denver)
+	http.HandleFunc("/home", home)
 	fmt.Printf("Starting server at port %s\n", "8080")
 
 	err := http.ListenAndServe(":8080", nil)
