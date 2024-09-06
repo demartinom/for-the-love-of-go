@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-type Arc struct {
+type Story struct {
 	Intro     StoryArc `json:"intro"`
 	NewYork   StoryArc `json:"new-york"`
 	Debate    StoryArc `json:"debate"`
@@ -28,16 +28,18 @@ type Option struct {
 	Arc  string `json:"arc"`
 }
 
+var storyText Story
+var story = readJson("gopher.json")
+var err = json.Unmarshal(story, &storyText)
+
 func home(w http.ResponseWriter, r *http.Request) {
-	var storyArc Arc
-	story := readJson("gopher.json")
-	err := json.Unmarshal(story, &storyArc)
+
 	if err != nil {
 		fmt.Println("error", err)
 		return
 	}
 	files := []string{"./web/html/base.tmpl.html", "./web/html/home.tmpl.html"}
-	handleTemplates(w, files, storyArc.Intro)
+	handleTemplates(w, files, storyText.Intro)
 }
 
 func main() {
