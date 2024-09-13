@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
+	"golang.org/x/net/html"
 )
 
 func main() {
@@ -17,5 +19,10 @@ func main() {
 		log.Fatal(err)
 	}
 	defer resp.Body.Close()
+
+	doc, err := html.Parse(resp.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 }
