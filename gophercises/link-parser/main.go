@@ -24,5 +24,26 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	// Function taken from html docs
+	// Allows function to be referenced within itself
+	var f func(*html.Node)
 
+	f = func(n *html.Node) {
+		// Checks if node is an anchor tag
+		if n.Type == html.ElementNode && n.Data == "a" {
+			// If it is an anchor tag, it looks over its attributes
+			for _, a := range n.Attr {
+				// If an href attribute is found, it prints the value of the href
+				if a.Key == "href" {
+					fmt.Println(a.Val)
+				}
+
+			}
+		}
+		//Allows func to visit all children and siblings of current node
+		for c := n.FirstChild; c != nil; c = c.NextSibling {
+			f(c)
+		}
+	}
+	f(doc)
 }
