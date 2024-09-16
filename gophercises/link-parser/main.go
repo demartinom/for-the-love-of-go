@@ -2,11 +2,10 @@ package main
 
 import (
 	"flag"
-
 	"log"
 	"os"
 
-	"github.com/demartinom/link-parser/parser"
+	"link-parser/parser"
 )
 
 func main() {

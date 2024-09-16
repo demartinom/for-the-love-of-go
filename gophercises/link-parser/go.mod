@@ -1,4 +1,4 @@
-module github.com/demartinom/link-parser
+module link-parser
 
 go 1.21.7
 
