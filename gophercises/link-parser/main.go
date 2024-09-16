@@ -1,9 +1,10 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
-	"strings"
+	"os"
 
 	"golang.org/x/net/html"
 )
@@ -14,23 +15,29 @@ type Link struct {
 	Text string
 }
 
+// TODO:
+// *Change to package parse have func return something and take in io.reader
+// *Check other examples
+
 func main() {
 	// Test HTML
-	exHtml := `<html>
-	<body>
-	<h1>Hello!</h1>
-	<a href="/other-page">A link to another page</a>
-	</body>
-	</html>`
+	htmlToRead := flag.String("doc", "ex1.html", "html to read")
+	flag.Parse()
 
+	// Open HTML file
+	file, err := os.Open(*htmlToRead)
+	if err != nil {
+		log.Fatal(err)
+	}
 	// Create slice of Links
 	links := []Link{}
 
 	// Parse html
-	doc, err := html.Parse(strings.NewReader(exHtml))
+	doc, err := html.Parse(file)
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer file.Close()
 
 	// Init function for recursion
 	var reading func(*html.Node)
