@@ -1,4 +1,4 @@
-module link-parser
+module github.com/demartinom/go-learning/gophercises/link-parser
 
 go 1.21.7
 
