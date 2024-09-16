@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/demartinom/go-learning/gophercises/link-parser/parser"
+	"github.com/demartinom/link-parser/parser"
 )
 
 func main() {
