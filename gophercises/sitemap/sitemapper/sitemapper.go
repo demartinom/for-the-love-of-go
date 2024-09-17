@@ -1,10 +1,10 @@
 package sitemapper
 
 import (
-	"fmt"
-	"io"
 	"log"
 	"net/http"
+
+	"github.com/demartinom/link/parser"
 )
 
 func SiteMap(site string) (*http.Response, error) {
@@ -14,11 +14,6 @@ func SiteMap(site string) (*http.Response, error) {
 	}
 	defer resp.Body.Close()
 
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		fmt.Printf("err: %s ", err)
-		return nil, err
-	}
-	fmt.Println(string(body))
-	return resp, nil
+	parser.Parse(resp.Body)
+	return nil, nil
 }

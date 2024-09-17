@@ -1,0 +1,6 @@
+github.com/demartinom/link v0.0.0-20240916195359-e8a348069177 h1:WIj+yiFtff2ot2mDATulNK+fXiSUHWPNj7KSIG5EOfc=
+github.com/demartinom/link v0.0.0-20240916195359-e8a348069177/go.mod h1:LH/V9ydv6m1AHfi3oRNlfg8qqJzgPRa9B+AYBfZ8lzU=
+github.com/demartinom/link v1.0.0 h1:W1dTqYJcPbnGLo2M6Wyu5Zzp85TLgqWcMaElX4RH8WU=
+github.com/demartinom/link v1.0.0/go.mod h1:LH/V9ydv6m1AHfi3oRNlfg8qqJzgPRa9B+AYBfZ8lzU=
+golang.org/x/net v0.29.0 h1:5ORfpBpCs4HzDYoodCDBbwHzdR5UrLBZ3sOnUJmFoHo=
+golang.org/x/net v0.29.0/go.mod h1:gLkgy8jTGERgjzMic6DS9+SP0ajcu6Xu3Orq/SpETg0=
