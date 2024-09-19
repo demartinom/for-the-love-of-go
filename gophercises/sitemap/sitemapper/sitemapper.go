@@ -11,7 +11,7 @@ import (
 	"github.com/demartinom/link/parser"
 )
 
-func SiteMap(site string) (*http.Response, error) {
+func SiteMap(site string) {
 	var localLinks []parser.Link
 
 	resp, err := http.Get(site)
@@ -33,5 +33,5 @@ func SiteMap(site string) (*http.Response, error) {
 	if err := enc.Encode(localLinks); err != nil {
 		fmt.Printf("error: %v\n", err)
 	}
-	return nil, nil
+
 }
