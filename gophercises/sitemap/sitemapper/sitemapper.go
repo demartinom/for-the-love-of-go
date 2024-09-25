@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"net/url"
 
 	"github.com/demartinom/link/parser"
 )
@@ -20,4 +21,13 @@ func SiteMap(site string) {
 	for _, l := range parsedLinks {
 		fmt.Printf("%+v\n", l)
 	}
+
+	reqUrl := resp.Request.URL
+	baseUrl := &url.URL{
+		Scheme: reqUrl.Scheme,
+		Host:   reqUrl.Host,
+	}
+
+	base := baseUrl.String()
+
 }
