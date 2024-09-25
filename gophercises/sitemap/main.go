@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	site := flag.String("url", "https://httpstat.us/", "URL to get sitemap from")
+	site := flag.String("url", "https://gophercises.com/", "URL to get sitemap from")
 	flag.Parse()
 
 	sitemapper.SiteMap(*site)
