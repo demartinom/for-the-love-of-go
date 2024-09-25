@@ -1,6 +1,7 @@
 package sitemapper
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"net/url"
@@ -35,5 +36,9 @@ func SiteMap(site string) {
 		case strings.HasPrefix(l.Href, "http"):
 			hrefs = append(hrefs, l.Href)
 		}
+	}
+
+	for _, href := range hrefs {
+		fmt.Println(href)
 	}
 }
