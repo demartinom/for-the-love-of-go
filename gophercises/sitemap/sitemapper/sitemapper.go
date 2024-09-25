@@ -1,10 +1,10 @@
 package sitemapper
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"net/url"
+	"strings"
 
 	"github.com/demartinom/link/parser"
 )
@@ -16,12 +16,6 @@ func SiteMap(site string) {
 	}
 	defer resp.Body.Close()
 
-	parsedLinks := parser.Parse(resp.Body)
-
-	for _, l := range parsedLinks {
-		fmt.Printf("%+v\n", l)
-	}
-
 	reqUrl := resp.Request.URL
 	baseUrl := &url.URL{
 		Scheme: reqUrl.Scheme,
@@ -30,4 +24,16 @@ func SiteMap(site string) {
 
 	base := baseUrl.String()
 
+	parsedLinks := parser.Parse(resp.Body)
+
+	var hrefs []string
+
+	for _, l := range parsedLinks {
+		switch {
+		case strings.HasPrefix(l.Href, "/"):
+			hrefs = append(hrefs, base+l.Href)
+		case strings.HasPrefix(l.Href, "http"):
+			hrefs = append(hrefs, l.Href)
+		}
+	}
 }
